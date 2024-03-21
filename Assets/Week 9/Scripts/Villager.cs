@@ -5,11 +5,11 @@ using UnityEngine.EventSystems;
 
 public class Villager : MonoBehaviour
 {
-    protected Rigidbody2D rb;
-    protected Animator animator;
+    Rigidbody2D rb;
+    Animator animator;
 
-    protected bool clickingOnSelf;
-    protected bool isSelected;
+    bool clickingOnSelf;
+    bool isSelected;
     public GameObject highlight;
 
     protected Vector2 destination;
@@ -58,6 +58,7 @@ public class Villager : MonoBehaviour
         if (movement.magnitude < 0.1)
         {
             movement = Vector2.zero;
+            speed = 3;
         }
 
         rb.MovePosition(rb.position + movement.normalized * speed * Time.deltaTime);

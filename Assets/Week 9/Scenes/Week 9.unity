@@ -7735,7 +7735,7 @@ GameObject:
   - component: {fileID: 8620931842726183961}
   - component: {fileID: 8891667502466720697}
   m_Layer: 0
-  m_Name: Archer
+  m_Name: Bob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -27,10 +27,12 @@ public class Growing : MonoBehaviour
     IEnumerator GrowingShapes()
     {
         running += 1;
-        StartCoroutine(Square());
+        coroutine = StartCoroutine(Square());
+        yield return coroutine;
         yield return new WaitForSeconds(1);
-        coroutine = StartCoroutine(Triangle());
-        Circle();
+        StartCoroutine(Circle());
+        yield return new WaitForSeconds(1);
+        StartCoroutine(Triangle());
         yield return coroutine;
         running -= 1;
     }
@@ -63,8 +65,9 @@ public class Growing : MonoBehaviour
         }
         running = running - 1;
     }
-    void Circle()
+    IEnumerator Circle()
     {
+        running = running + 1;
         float size = 0;
         while (size < 5)
         {
@@ -72,6 +75,7 @@ public class Growing : MonoBehaviour
             Vector3 scale = new Vector3(size, size, size);
             circle.transform.localScale = scale;
             circleTMP.text = "Cirlce: " + scale;
+            yield return null;
         }
         while (size > 0)
         {
@@ -79,6 +83,8 @@ public class Growing : MonoBehaviour
             Vector3 scale = new Vector3(size, size, size);
             circle.transform.localScale = scale;
             circleTMP.text = "Cirlce: " + scale;
+            yield return null;
         }
+        running = running - 1;
     }
 }

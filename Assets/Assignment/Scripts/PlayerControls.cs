@@ -3,25 +3,23 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerControls : MonoBehaviour
+public class PlayerControls : Character
 {
-    public float speed = 100f;
-    public Vector2 movement;
-    Rigidbody2D rb;
-    public GameObject knifePrefab;
-    public Transform knifeSpawn;
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-    void Update()
+    Coroutine coroutine;
+    protected override void Update()
     {
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
-        if (Input.GetKeyDown(KeyCode.Space)) { Instantiate(knifePrefab, knifeSpawn.position, knifeSpawn.rotation); }
+        if (Input.GetKeyDown(KeyCode.Space)) { Instantiate(weaponPrefab, weaponSpawn.position, weaponSpawn.rotation); }
     }
-    private void FixedUpdate()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        rb.AddForce(speed * Time.deltaTime * movement);
+        coroutine = StartCoroutine(whenHit());
+    }
+    IEnumerator whenHit()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(1);
+        spriteRenderer.color = Color.white;
     }
 }

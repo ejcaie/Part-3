@@ -10,15 +10,15 @@ public class Character : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     public GameObject weaponPrefab;
     public Transform weaponSpawn;
-    private void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     protected virtual void Update()
     {
-        movement.x = Random.Range(-10, 10);
-        movement.y = Random.Range(-10, 10);
+        movement.x = Random.Range(-10, 11);
+        movement.y = Random.Range(-10, 11);
     }
     private void FixedUpdate()
     {

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Projectiles : MonoBehaviour
 {
-    Rigidbody2D rb;
-    Vector2 movement = new Vector2(5, 0);
+    protected Rigidbody2D rb;
+    protected Vector2 movement = new Vector2(5, 0);
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * Time.deltaTime);
     }

@@ -14,9 +14,9 @@ public class PlayerControls : Character
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        coroutine = StartCoroutine(whenHit());
+        coroutine = StartCoroutine(WhenHit());
     }
-    IEnumerator whenHit()
+    IEnumerator WhenHit()
     {
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(1);

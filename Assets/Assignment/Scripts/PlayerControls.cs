@@ -6,6 +6,12 @@ using UnityEngine;
 public class PlayerControls : Character
 {
     Coroutine coroutine;
+    public static float hits;
+    protected virtual void Start()
+    {
+        base.Start();
+        hits = 0;
+    }
     protected override void Update()
     {
         movement.x = Input.GetAxis("Horizontal");
@@ -19,6 +25,7 @@ public class PlayerControls : Character
     IEnumerator WhenHit()
     {
         spriteRenderer.color = Color.red;
+        hits += hits;
         yield return new WaitForSeconds(1);
         spriteRenderer.color = Color.white;
     }
